@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.changelog) // Gradle Changelog Plugin
     alias(libs.plugins.qodana) // Gradle Qodana Plugin
     alias(libs.plugins.kover) // Gradle Kover Plugin
+    alias(libs.plugins.detekt)
 }
 
 group = providers.gradleProperty("pluginGroup").get()
@@ -123,6 +124,13 @@ kover {
             }
         }
     }
+}
+
+detekt {
+    buildUponDefaultConfig = false
+    allRules = false
+    config.setFrom("$projectDir/config/detekt/detekt.yml")
+    autoCorrect = true
 }
 
 tasks {
